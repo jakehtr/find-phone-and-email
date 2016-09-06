@@ -25,7 +25,7 @@ def get_results_from_clipboard():
         pyperclip.copy(all_matches)
         print('Copied to clipboard:\n{}'.format(all_matches))
     else:
-        print('No phones numbers or email addresses found.')
+        print('No phone numbers or email addresses found.')
 
 if __name__ == '__main__':
     # create phone number regex
