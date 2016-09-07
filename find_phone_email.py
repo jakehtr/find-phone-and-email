@@ -1,7 +1,7 @@
 #! usr/bin/env python3
 
 """
-phoneAndEmail.py - Finds phone numbers and email addresses from the clipboard.
+find_phone_email.py - Finds phone numbers and email addresses from the clipboard.
 """
 
 import pyperclip
@@ -19,7 +19,7 @@ def find_matches():
 def get_results_from_clipboard():
     # first find the matches
     find_matches()
-    # copy the results to the clipboard.
+    # copy the results to the clipboard
     if matches:
         all_matches = '\n'.join(matches)
         pyperclip.copy(all_matches)
