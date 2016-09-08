@@ -1,4 +1,4 @@
-#! usr/bin/env python3
+#!/usr/bin/env python3
 
 """
 find_phone_email.py - Finds phone numbers and email addresses from the clipboard.
