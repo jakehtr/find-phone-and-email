@@ -11,9 +11,11 @@ import re
 def find_matches():
     # find matches in clipboard text
     for groups in phone_regex.findall(text):
-        matches.append(groups[0])
+        if groups[0] not in matches:
+            matches.append(groups[0])
     for groups in email_regex.findall(text):
-        matches.append(groups[0])
+        if groups[0] not in matches:
+            matches.append(groups[0])
 
 
 def get_results_from_clipboard():
