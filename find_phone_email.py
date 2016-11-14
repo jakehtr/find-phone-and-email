@@ -9,19 +9,13 @@ import re
 
 
 def find_matches():
-    # find matches in clipboard text
-    for groups in phone_regex.findall(text):
-        if groups[0] not in matches:
-            matches.append(groups[0])
-    for groups in email_regex.findall(text):
-        if groups[0] not in matches:
-            matches.append(groups[0])
+    phone_numbers = set(groups[0].strip() for groups in phone_regex.findall(text))
+    emails = set(groups[0].strip() for groups in email_regex.findall(text))
+    return phone_numbers.union(emails)
 
 
-def get_results_from_clipboard():
-    # first find the matches
-    find_matches()
-    # copy the results to the clipboard
+def results_from_clipboard():
+    matches = find_matches()
     if matches:
         all_matches = '\n'.join(matches)
         pyperclip.copy(all_matches)
@@ -30,19 +24,17 @@ def get_results_from_clipboard():
         print('No phone numbers or email addresses found.')
 
 if __name__ == '__main__':
-    # create phone number regex
     phone_regex = re.compile(r'''(
-        (\+44|0)                            # UK area code
+        (\+44|0)?                           # UK area code
         (\s\(0\)|\(0\))?                    # (0)
         (\s)?                               # separator
         (\d{2,4})                           # first 2-4 digits
         (\s)                                # separator
-        (\d{4,8})                           # mid/last 4-8 digits
+        (\d{3,8})                           # mid/last 3-8 digits
         (\s)?                               # separator
         (\d{4})?                            # last 4 digits
         )''', re.VERBOSE)
 
-    # create email regex
     email_regex = re.compile(r'''(
         [a-zA-Z0-9._-]+                     # username
         @                                   # @ symbol
@@ -51,6 +43,5 @@ if __name__ == '__main__':
         (\.[a-zA-Z]{2,4})?                  # extra dot-something
         )''', re.VERBOSE)
 
-    text = '{}'.format(pyperclip.paste())
-    matches = list()
-    get_results_from_clipboard()
+    text = pyperclip.paste()
+    results_from_clipboard()
