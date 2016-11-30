@@ -1,5 +1,5 @@
 # Find Phone And Email
-Finds phone numbers and email addresses from the clipboard, and copies all them all to the clipboard.
+Finds phone numbers and email addresses from the clipboard, and then copies them all to the clipboard.
 
 ## Instructions
 Pre-requisite: You need Python 3+
